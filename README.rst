@@ -1,0 +1,1 @@
+poetry run cli webapi alembic initrevision --message "Init Job base" --branch-label=example --version-path=dhuni_tech/job

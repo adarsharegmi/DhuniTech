@@ -32,7 +32,8 @@ def settings_factory() -> Settings:
             f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}",
         ),
         components=[
-            
+            "dhuni_tech.candidate",
+            "dhuni_tech.job"
         ],
         secret_key="2#$%^&SDFGHJKLOIUYTR@#$%^&*987654#$%^&*kJHGF3$%^&*",
         alembic_config="alembic.ini",
