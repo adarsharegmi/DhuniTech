@@ -30,8 +30,8 @@ class CandidateRepository(SqlAlchemyRepository):
         candidate_query = candidate.insert()
         candidate_values = {
             "id": str(model.id_),
-            "first_name":model.name,
-            "last_name":model.placement_name,
+            "first_name":model.first_name,
+            "last_name":model.last_name,
             "status":model.status
         }
         await self.db.execute(query=candidate_query, values=candidate_values)
@@ -39,7 +39,7 @@ class CandidateRepository(SqlAlchemyRepository):
     async def get(self, ref: str):
         candidate_query = sa.select(
             [
-                candidate.c.id_,
+                candidate.c.id,
                 candidate.c.first_name,
                 candidate.c.last_name,
                 candidate.c.status
@@ -80,12 +80,12 @@ class CandidateSkillsRepository(SqlAlchemyRepository):
             "candidate_id":model.candidate_id,
             "skills_name":model.skills_name
         }
-        await self.db.execute(query=candidate_query, values=candidate_values)
+        await self.db.execute(query=candidate_skills_query, values=candidate_skills_values)
 
     async def get(self, ref: str):
         candidate_skills_query = sa.select(
             [
-                candidate_skills.c.id_,
+                candidate_skills.c.id,
                 candidate_skills.c.candidate_id,
                 candidate_skills.c.skills_name
             ]

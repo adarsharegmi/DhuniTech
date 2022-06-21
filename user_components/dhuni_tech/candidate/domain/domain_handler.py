@@ -15,8 +15,10 @@ async def update_candidate(
     if isinstance(cmd, command.UpdateCandidate):
         return await cmd.candidate.update(
             {
-                "candidate_id":cmd.candidate_id,
-                "skills_name":cmd.skills_name
+                "first_name":cmd.first_name,
+                "last_name":cmd.last_name,
+                "status":cmd.status
+
             }
         )
 

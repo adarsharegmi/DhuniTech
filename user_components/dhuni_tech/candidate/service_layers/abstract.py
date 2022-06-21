@@ -8,7 +8,7 @@ from pyparsing import Opt
 class AddCandidate(BaseModel):
     first_name: str
     last_name: str
-    status: str
+    status: Optional[str]="ACTIVE"
 
 class UpdateCandidate(BaseModel):
     id_: Optional[str]
@@ -31,6 +31,7 @@ class AddCandidateSkills(BaseModel):
 
 
 class UpdateCandidateSkills(BaseModel):
+    id_: Optional[str]
     candidate_id: Optional[str]
     skills_name: Optional[str]
 

@@ -26,7 +26,7 @@ async def add_job_skills(cmd: command.AddJobSkills) -> model.JobSkills:
 
 
 async def update_job_skills(
-    cmd: command.UpdateJobCommand,
+    cmd: command.UpdateJobSkillsCommand,
 ) -> model.JobSkills:
     if isinstance(cmd, command.UpdateJobSkills):
         return await cmd.job_skills.update(

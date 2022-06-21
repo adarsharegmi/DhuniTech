@@ -48,6 +48,7 @@ class CandidateView(HTTPMethodView):
         except ValidationError as err:
             return response.json(json.loads(err.json()), status=400)
 
+        breakpoint()
         if isinstance(result[0], UUID):
             candidate_result = await views.get_candidate(result[0], request.app.ctx.db)
             return response.json(
@@ -69,9 +70,6 @@ class CandidateView(HTTPMethodView):
                         repository_class=repository.CandidateRepository,
                     ),
                 )
-            except exceptions.FILE_NAME_ALREADY_EXISTS as err:
-                return response.json(json.loads({'message':'file name already exists'}),
-                                    status=500)
             except ValidationError as err:
                 return response.json(json.loads(err.json()), status=400)
             if result:

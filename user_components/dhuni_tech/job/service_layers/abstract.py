@@ -16,13 +16,14 @@ class DeleteJob(BaseModel):
     id: str
 
 class AddJobSkills(BaseModel):
-    candidate_id: str
+    job_id: str
     skills_name: str
 
 
 
 class UpdateJobSkills(BaseModel):
-    candidate_id: Optional[str]
+    id_: Optional[str]
+    job_id: Optional[str]
     skills_name: Optional[str]
 
     

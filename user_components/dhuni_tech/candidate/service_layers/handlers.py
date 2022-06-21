@@ -78,12 +78,14 @@ async def update_candidate_skills(
         app = check_app()
         candidate_skills = model.CandidateSkills(
             id_=candidate_skills["id"],
-            skills_name=candidate_skills["skills_name"]
+            skills_name=candidate_skills["skills_name"],
+            candidate_id = str(candidate_skills["candidate_id"])
         )
         candidate_skills_command = command.UpdateCandidateSkills(
             candidate_skills=candidate_skills,
             id_=str(candidate_skills.id_),
-            skills_name=cmd.skills_name if cmd.skills_name else candidate_skills.skills_name
+            skills_name=cmd.skills_name if cmd.skills_name else candidate_skills.skills_name,
+            candidate_id=cmd.candidate_id if cmd.candidate_id else candidate_skills.candidate_id
             
         )
         candidate_skills = await domain_handler.update_candidate_skills(cmd=candidate_skills_command)

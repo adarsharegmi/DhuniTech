@@ -25,7 +25,7 @@ class AddJobSkills(Command):
 
 
 class UpdateJobSkillsCommand(Command):
-    job: model.JobSkills = None
+    job_skills: model.JobSkills = None
 
 
 

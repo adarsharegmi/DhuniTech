@@ -41,7 +41,7 @@ class AddCandidateSkills(Command):
 
 
 class UpdateCandidateSkillsCommand(Command):
-    candidate: model.CandidateSkills = None
+    candidate_skills: model.CandidateSkills = None
 
 
 
