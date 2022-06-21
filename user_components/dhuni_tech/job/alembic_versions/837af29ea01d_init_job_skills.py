@@ -1,31 +1,26 @@
-"""for skill
+"""Init Job skills
 
-Revision ID: ee5b28c500c0
+Revision ID: 837af29ea01d
 Revises: 
-Create Date: 2022-06-20 22:51:28.308437
+Create Date: 2022-06-20 23:55:27.307697
 
 """
 from alembic import op
 import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
-from sqlalchemy.sql.schema import ForeignKey
-
 
 # revision identifiers, used by Alembic.
-revision = 'ee5b28c500c0'
-down_revision = '8e25870580c0'
-branch_labels = None
+revision = '837af29ea01d'
+down_revision = None
+branch_labels = ('job',)
 depends_on = None
 
 
-def upgrade() -> None:
+def upgrade():
     op.create_table(
-    "CandidateSkills",
+    "Job",
     sa.Column("id", postgresql.UUID(as_uuid=False), primary_key=True),
-    sa.Column("candidate_id",
-        postgresql.UUID(as_uuid=False),
-        ForeignKey("Candidate.id")),
-    sa.Column("skills_name", sa.String(255)),
+    sa.Column("job_title", sa.String(255)),
     sa.Column(
         "created_at",
         sa.TIMESTAMP(timezone=True),
@@ -40,5 +35,6 @@ def upgrade() -> None:
 )
 
 
-def downgrade() -> None:
+
+def downgrade():
     pass

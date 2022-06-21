@@ -1,27 +1,28 @@
-"""create_job
+"""Init candidate base
 
-Revision ID: a4a5f7ab654d
+Revision ID: 8e0d5f9013fa
 Revises: 
-Create Date: 2022-06-20 22:48:35.960008
+Create Date: 2022-06-21 00:01:07.748942
 
 """
 from alembic import op
 import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
-
 # revision identifiers, used by Alembic.
-revision = 'a4a5f7ab654d'
+revision = '8e0d5f9013fa'
 down_revision = None
-branch_labels = None
+branch_labels = ('candidate',)
 depends_on = None
 
 
-def upgrade() -> None:
+def upgrade():
     op.create_table(
-    "Job",
+    "Candidate",
     sa.Column("id", postgresql.UUID(as_uuid=False), primary_key=True),
-    sa.Column("job_title", sa.String(255)),
+    sa.Column("first_name", sa.String(255)),
+    sa.Column("last_name", sa.String(255)),
+    sa.Column("status", sa.String(255)),
     sa.Column(
         "created_at",
         sa.TIMESTAMP(timezone=True),
@@ -36,5 +37,6 @@ def upgrade() -> None:
 )
 
 
-def downgrade() -> None:
+
+def downgrade():
     pass

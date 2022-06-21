@@ -1,28 +1,31 @@
-"""jon data
+"""create migrations
 
-Revision ID: 8e25870580c0
-Revises: 
-Create Date: 2022-06-20 22:47:26.270437
+Revision ID: 4bba88deb4a0
+Revises: 837af29ea01d
+Create Date: 2022-06-20 23:56:37.915702
 
 """
 from alembic import op
 import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
+from sqlalchemy.sql.schema import ForeignKey
+
 
 # revision identifiers, used by Alembic.
-revision = '8e25870580c0'
-down_revision = None
+revision = '4bba88deb4a0'
+down_revision = '837af29ea01d'
 branch_labels = None
 depends_on = None
 
 
-def upgrade() -> None:
+def upgrade():
     op.create_table(
-    "Candidate",
+    "JobSkills",
     sa.Column("id", postgresql.UUID(as_uuid=False), primary_key=True),
-    sa.Column("first_name", sa.String(255)),
-    sa.Column("last_name", sa.String(255)),
-    sa.Column("status", sa.String(255)),
+    sa.Column("job_id",
+        postgresql.UUID(as_uuid=False),
+        ForeignKey("Job.id")),
+    sa.Column("skills_name", sa.String(255)),
     sa.Column(
         "created_at",
         sa.TIMESTAMP(timezone=True),
@@ -37,5 +40,6 @@ def upgrade() -> None:
 )
 
 
-def downgrade() -> None:
+
+def downgrade():
     pass

@@ -1,8 +1,8 @@
-"""for skill job
+"""create migrations
 
-Revision ID: 05608fca53a3
-Revises: ee5b28c500c0
-Create Date: 2022-06-20 22:51:33.060005
+Revision ID: dc06511e8d5a
+Revises: 8e0d5f9013fa
+Create Date: 2022-06-21 00:01:18.712348
 
 """
 from alembic import op
@@ -11,19 +11,19 @@ from sqlalchemy.dialects import postgresql
 from sqlalchemy.sql.schema import ForeignKey
 
 # revision identifiers, used by Alembic.
-revision = '05608fca53a3'
-down_revision = 'ee5b28c500c0'
+revision = 'dc06511e8d5a'
+down_revision = '8e0d5f9013fa'
 branch_labels = None
 depends_on = None
 
 
-def upgrade() -> None:
+def upgrade():
     op.create_table(
-    "JobSkills",
+    "CandidateSkills",
     sa.Column("id", postgresql.UUID(as_uuid=False), primary_key=True),
-    sa.Column("job_id",
+    sa.Column("candidate_id",
         postgresql.UUID(as_uuid=False),
-        ForeignKey("Job.id")),
+        ForeignKey("Candidate.id")),
     sa.Column("skills_name", sa.String(255)),
     sa.Column(
         "created_at",
@@ -39,5 +39,5 @@ def upgrade() -> None:
 )
 
 
-def downgrade() -> None:
+def downgrade():
     pass
