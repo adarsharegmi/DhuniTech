@@ -22,10 +22,14 @@ Sanic-Cors = "^2.0.1"
 PyJWT = "^2.4.0"
 sanic-session = "^0.8.0"
 asyncpg = "^0.25.0"
+psycopg2 = "^2.9.3"
+SQLAlchemy-Utils = "^0.38.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
 nepAddy_core = {path="vendor/nepAddy_core-0.1.0-py3-none-any.whl"}
+user_components = {path="user_components", develop=true}
+
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

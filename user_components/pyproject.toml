@@ -2,7 +2,7 @@
 name = "user_components"
 version = "0.1.0"
 description = ""
-authors = []
+authors = ["Addy <Addy@gmail.com>"]
 
 packages =[{include ="dhuni_tech"}]
 

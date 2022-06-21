@@ -1,1 +1,8 @@
-poetry run cli webapi alembic initrevision --message "Init Job base" --branch-label=example --version-path=dhuni_tech/job
+poetry run cli webapi alembic initrevision --message "Init candidate base" --branch-label=candidate --version-path=dhuni_tech/candidate
+
+
+poetry run cli webapi alembic makemigrations --branch-label=candidate  --message "create migrations"
+
+poetry run cli webapi alembic migrate heads
+
+docker exec -it dhunitech psql -U postgres
