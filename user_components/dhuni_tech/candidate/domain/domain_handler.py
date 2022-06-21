@@ -1,5 +1,5 @@
-from ml_backend.candidate.domain import model
-from ml_backend.candidate.domain import command
+from dhuni_tech.candidate.domain import model
+from dhuni_tech.candidate.domain import command
 
 async def add_candidate(cmd: command.AddCandidate) -> model.Candidate:
     return await model.candidate_factory(

@@ -1,5 +1,5 @@
 from sanic import Blueprint
-from ml_backend.candidate.entrypoints import route_handler
+from dhuni_tech.candidate.entrypoints import route_handler
 
 candidate = Blueprint("candidate", url_prefix="api/v1/")
 

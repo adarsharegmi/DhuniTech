@@ -1,9 +1,9 @@
 from __future__ import annotations
 from sanic import Sanic
-from ml_backend.candidate.adapters import repository
-from ml_backend.candidate.domain import command, domain_handler, model
-from ml_backend.candidate.service_layers import unit_of_work
-from ml_backend.candidate.views import views
+from dhuni_tech.candidate.adapters import repository
+from dhuni_tech.candidate.domain import command, domain_handler, model
+from dhuni_tech.candidate.service_layers import unit_of_work
+from dhuni_tech.candidate.views import views
 
 
 err = []

@@ -1,6 +1,6 @@
 from uuid import UUID
 import sqlalchemy as sa
-from ml_backend.candidate.adapters.orm import (
+from dhuni_tech.candidate.adapters.orm import (
     candidate,
 )
 from nepAddy_core.lib.db_connection import DbConnection

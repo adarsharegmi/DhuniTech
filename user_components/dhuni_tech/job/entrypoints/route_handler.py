@@ -3,25 +3,20 @@ from uuid import UUID
 from pydantic import ValidationError
 from sanic import response
 from sanic.views import HTTPMethodView
-
 from nepAddy_core.lib import err_msg
 from nepAddy_core.lib.json_encoder import jsonable_encoder
 from webapi.messagebus import messagebus
 
-from ml_backend.job.views import views
-from ml_backend.job.adapters import repository
-from ml_backend.job.domain import command, exceptions
-from ml_backend.job.service_layers import abstract, unit_of_work
-from ml_backend.authentication.utils.auth_decorator import authorize
-from ml_backend.authentication.views import views as auth_view
+from dhuni_tech.job.views import views
+from dhuni_tech.job.adapters import repository
+from dhuni_tech.job.domain import command, exceptions
+from dhuni_tech.job.service_layers import abstract, unit_of_work
 
 async def get_job(request):
     job = await views.get_all_job(request.app.ctx.db)
     return response.json(jsonable_encoder(job))
         
 class JobView(HTTPMethodView):
-    decorators = [authorize()]
-
     async def get(self, request, id_):
 
         if   len(id_) > 2:

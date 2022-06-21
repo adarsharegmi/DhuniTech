@@ -1,5 +1,5 @@
-from ml_backend.job.domain import model
-from ml_backend.job.domain import command
+from dhuni_tech.job.domain import model
+from dhuni_tech.job.domain import command
 
 async def add_job(cmd: command.AddJob) -> model.Job:
     return await model.job_factory(

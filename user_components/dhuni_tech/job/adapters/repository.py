@@ -5,9 +5,9 @@ from nepAddy_core.lib.repository import (
     SqlAlchemyRepository,
 )
 from nepAddy_core.lib.repository import DbConnection
-from ml_backend.job.domain import model
-from ml_backend.job.adapters.orm import (
-    job
+from dhuni_tech.job.domain import model
+from dhuni_tech.job.adapters.orm import (
+    job, job_skills
 )
 
 
@@ -37,7 +37,7 @@ class JobRepository(SqlAlchemyRepository):
     async def get(self, ref: str):
         job_query = sa.select(
             [
-                job.c.id_,
+                job.c.id,
                 job.c.job_title,
             ]
         ).where(job.c.id == ref)
@@ -74,12 +74,12 @@ class JobSkillsRepository(SqlAlchemyRepository):
             "job_id":model.job_id,
             "skills_name":model.skills_name
         }
-        await self.db.execute(query=job_query, values=job_values)
+        await self.db.execute(query=job_skills_query, values=job_skills_values)
 
     async def get(self, ref: str):
         job_skills_query = sa.select(
             [
-                job_skills.c.id_,
+                job_skills.c.id,
                 job_skills.c.job_id,
                 job_skills.c.skills_name
             ]

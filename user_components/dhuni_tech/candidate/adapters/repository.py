@@ -5,8 +5,8 @@ from nepAddy_core.lib.repository import (
     SqlAlchemyRepository,
 )
 from nepAddy_core.lib.repository import DbConnection
-from ml_backend.candidate.domain import model
-from ml_backend.candidate.adapters.orm import (
+from dhuni_tech.candidate.domain import model
+from dhuni_tech.candidate.adapters.orm import (
     candidate, candidate_skills
 )
 

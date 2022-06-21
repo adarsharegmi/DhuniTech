@@ -8,19 +8,16 @@ from nepAddy_core.lib import err_msg
 from nepAddy_core.lib.json_encoder import jsonable_encoder
 from webapi.messagebus import messagebus
 
-from ml_backend.candidate.views import views
-from ml_backend.candidate.adapters import repository
-from ml_backend.candidate.domain import command, exceptions
-from ml_backend.candidate.service_layers import abstract, unit_of_work
-from ml_backend.authentication.utils.auth_decorator import authorize
-from ml_backend.authentication.views import views as auth_view
+from dhuni_tech.candidate.views import views
+from dhuni_tech.candidate.adapters import repository
+from dhuni_tech.candidate.domain import command, exceptions
+from dhuni_tech.candidate.service_layers import abstract, unit_of_work
 
 async def get_candidate(request):
     candidate = await views.get_all_candidate(request.app.ctx.db)
     return response.json(jsonable_encoder(candidate))
         
 class CandidateView(HTTPMethodView):
-    decorators = [authorize()]
 
     async def get(self, request, id_):
 
