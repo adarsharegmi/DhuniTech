@@ -4,6 +4,7 @@ from dhuni_tech.candidate.adapters import repository
 from dhuni_tech.candidate.domain import command, domain_handler, model
 from dhuni_tech.candidate.service_layers import unit_of_work
 from dhuni_tech.candidate.views import views
+from user_components.dhuni_tech.candidate.domain import exceptions
 
 
 err = []
@@ -65,6 +66,10 @@ async def add_candidate_skills(
     async with uow:
         app = check_app()
         candidate_skills = await domain_handler.add_candidate_skills(cmd)
+        res = await views.check_skills(cmd.candidate_id, cmd.skills_name, app.ctx.db)
+        if res:
+            raise exceptions.DUPLICATE_SKILL_FOUND()
+
         await uow.repository.add(candidate_skills)
     return candidate_skills.id_
 

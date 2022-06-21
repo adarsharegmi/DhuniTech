@@ -25,6 +25,7 @@ def upgrade():
         postgresql.UUID(as_uuid=False),
         ForeignKey("Candidate.id")),
     sa.Column("skills_name", sa.String(255)),
+    sa.UniqueConstraint("candidate_id", "skills_name"),
     sa.Column(
         "created_at",
         sa.TIMESTAMP(timezone=True),

@@ -48,7 +48,6 @@ class CandidateView(HTTPMethodView):
         except ValidationError as err:
             return response.json(json.loads(err.json()), status=400)
 
-        breakpoint()
         if isinstance(result[0], UUID):
             candidate_result = await views.get_candidate(result[0], request.app.ctx.db)
             return response.json(
@@ -144,6 +143,10 @@ class CandidateSkillsView(HTTPMethodView):
             
         except ValidationError as err:
             return response.json(json.loads(err.json()), status=400)
+        except exceptions.DUPLICATE_SKILL_FOUND as err:
+            return response.json(json.loads(err.json()), status=400)
+        except Exception as e:
+            return response.json("duplicate skill found", status=400)
 
         if isinstance(result[0], UUID):
             candidate_result = await views.get_candidate_skills(result[0], request.app.ctx.db)
@@ -167,6 +170,9 @@ class CandidateSkillsView(HTTPMethodView):
                     ),
                 )
             except ValidationError as err:
+                return response.json(json.loads(err.json()), status=400)
+
+            except exceptions.DUPLICATE_SKILL_FOUND as err:
                 return response.json(json.loads(err.json()), status=400)
             if result:
                 candidate_result = await views.get_candidate_skills(id_, request.app.ctx.db)

@@ -139,6 +139,10 @@ class JobSkillsView(HTTPMethodView):
             
         except ValidationError as err:
             return response.json(json.loads(err.json()), status=400)
+        except exceptions.DUPLICATE_SKILL_FOUND as err:
+            return response.json(json.loads(err.json()), status=400)
+        except Exception as e:
+                return response.json("duplicate skill found", status=400)
 
         if isinstance(result[0], UUID):
             job_result = await views.get_job_skills(result[0], request.app.ctx.db)
@@ -163,6 +167,12 @@ class JobSkillsView(HTTPMethodView):
                 )
             except ValidationError as err:
                 return response.json(json.loads(err.json()), status=400)
+
+            except exceptions.DUPLICATE_SKILL_FOUND as err:
+                return response.json(json.loads(err.json()), status=400)
+            except Exception as e:
+                return response.json("duplicate skill found", status=400)
+
             if result:
                 job_result = await views.get_job_skills(id_, request.app.ctx.db)
                 return response.json(

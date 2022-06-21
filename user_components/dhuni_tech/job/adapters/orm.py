@@ -47,4 +47,5 @@ job_skills = sa.Table(
         default=sa.func.now(),
         onupdate=sa.func.now(),
     ),
+    sa.UniqueConstraint("job_id", "skills_name"),
 )

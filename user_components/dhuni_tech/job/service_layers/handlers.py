@@ -73,7 +73,6 @@ async def update_job_skills(
     async with uow:
         job_skills = await uow.repository.get(cmd.id_)
         app = check_app()
-        breakpoint()
         job_skills = model.JobSkills(
             id_=job_skills["id"],
             skills_name=job_skills["skills_name"],
@@ -85,7 +84,6 @@ async def update_job_skills(
             skills_name=cmd.skills_name if cmd.skills_name else job_skills.skills_name
             
         )
-        breakpoint()
         job_skills = await domain_handler.update_job_skills(cmd=job_skills_command)
         await uow.repository.update(job_skills)
 

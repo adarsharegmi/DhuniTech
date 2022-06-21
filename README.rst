@@ -5,4 +5,5 @@ poetry run cli webapi alembic makemigrations --branch-label=candidate  --message
 
 poetry run cli webapi alembic migrate heads
 
-docker exec -it dhunitech psql -U postgres
+docker exec -it dhuni_tech psql -U postgres
+
