@@ -1,6 +1,7 @@
-from ml_backend.candidate.domain import model
+from dhuni_tech.candidate.domain import model
 from nepAddy_core.lib.command import Command
 from typing import Optional
+from enum import Enum
 
 
 class AddCandidate(Command):
@@ -14,6 +15,7 @@ class UpdateCandidateCommand(Command):
 
 
 class UpdateCandidate(UpdateCandidateCommand):
+    id_: Optional[str]
     first_name: Optional[str]
     last_name: Optional[str]
     status: Optional[str]
@@ -44,6 +46,7 @@ class UpdateCandidateSkillsCommand(Command):
 
 
 class UpdateCandidateSkills(UpdateCandidateSkillsCommand):
+    id_: Optional[str]
     candidate_id: Optional[str]
     skills_name: Optional[str]
 

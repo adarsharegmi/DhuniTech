@@ -1,4 +1,4 @@
-from ml_backend.job.domain import model
+from dhuni_tech.job.domain import model
 from nepAddy_core.lib.command import Command
 from typing import Optional
 
@@ -12,6 +12,7 @@ class UpdateJobCommand(Command):
 
 
 class UpdateJob(UpdateJobCommand):
+    id_: Optional[str]
     job_title: Optional[str]
     
 class DeleteJob(Command):
@@ -29,6 +30,7 @@ class UpdateJobSkillsCommand(Command):
 
 
 class UpdateJobSkills(UpdateJobSkillsCommand):
+    id_: Optional[str]
     job_id: Optional[str]
     skills_name: Optional[str]
 
