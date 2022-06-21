@@ -8,7 +8,7 @@ from nepAddy_core.lib.settings import AbstractSettings
 load_dotenv(find_dotenv())
 DB_USER = os.environ.get("DB_USER", "postgres")
 DB_PASSWORD = os.environ.get("DB_PASSWORD", "postgres")
-DB_PORT = os.environ.get("DB_PORT", "5435")
+DB_PORT = os.environ.get("DB_PORT", "5436")
 DB_HOST = os.environ.get("HOST", "localhost")
 DB_NAME = os.environ.get("DB_NAME", "postgres")
 
@@ -34,6 +34,7 @@ def settings_factory() -> Settings:
         components=[
             "dhuni_tech.candidate",
             "dhuni_tech.job"
+            
         ],
         secret_key="2#$%^&SDFGHJKLOIUYTR@#$%^&*987654#$%^&*kJHGF3$%^&*",
         alembic_config="alembic.ini",
