@@ -47,6 +47,20 @@ async def get_candidate_skills(id_: UUID, db: DbConnection):
     return candidate_skills_result
 
 
+async def get_candidate_skills_by_id(id_: UUID, db: DbConnection):
+    candidate_skills_query = sa.select(
+        [
+            candidate_skills.c.id,
+            candidate_skills.c.skills_name,
+            candidate_skills.c.candidate_id,
+            candidate.c.first_name,
+            candidate.c.last_name
+        ]
+    ).where(sa.and_(candidate_skills.c.id==str(id_), candidate_skills.c.candidate_id==candidate.c.id))
+    candidate_skills_result = await db.fetch_all(query=candidate_skills_query)
+    return candidate_skills_result
+
+
 
 
 async def get_all_candidate_skills(db: DbConnection):

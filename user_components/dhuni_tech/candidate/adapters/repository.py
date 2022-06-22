@@ -78,7 +78,7 @@ class CandidateSkillsRepository(SqlAlchemyRepository):
         candidate_skills_values = {
             "id": str(model.id_),
             "candidate_id":model.candidate_id,
-            "skills_name":model.skills_name
+            "skills_name":model.skills_name.title()
         }
         await self.db.execute(query=candidate_skills_query, values=candidate_skills_values)
 

@@ -28,7 +28,7 @@ SQLAlchemy-Utils = "^0.38.2"
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
 nepAddy_core = {path="vendor/nepAddy_core-0.1.0-py3-none-any.whl"}
-user_components = {path="user_components", develop=true}
+user_components = {path="vendor/user_components-0.1.0-py3-none-any.whl"}
 
 
 [build-system]

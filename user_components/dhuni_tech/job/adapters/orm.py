@@ -25,6 +25,7 @@ job = sa.Table(
         default=sa.func.now(),
         onupdate=sa.func.now(),
     ),
+    sa.UniqueConstraint("job_title"),
 )
 
 

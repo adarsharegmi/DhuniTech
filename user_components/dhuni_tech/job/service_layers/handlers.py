@@ -1,7 +1,6 @@
 from __future__ import annotations
 from sanic import Sanic
-from dhuni_tech.job.adapters import repository
-from dhuni_tech.job.domain import command, domain_handler, model
+from dhuni_tech.job.domain import command, domain_handler, model, exceptions
 from dhuni_tech.job.service_layers import unit_of_work
 from dhuni_tech.job.views import views
 
@@ -21,6 +20,9 @@ async def add_job(
     async with uow:
         app = check_app()
         job = await domain_handler.add_job(cmd)
+        model_data = await views.check_job_title(job.job_title, app.ctx.db)
+        if model_data:
+            raise exceptions.DUPLICATE_JOB_FOUND()
         await uow.repository.add(job)
     return job.id_
 
@@ -32,6 +34,10 @@ async def update_job(
     async with uow:
         job = await uow.repository.get(cmd.id_)
         app = check_app()
+        model_data = await views.check_job_title(job.job_title, app.ctx.db)
+        if model_data:
+            raise exceptions.DUPLICATE_JOB_FOUND()
+
         job = model.Job(
             id_=job["id"],
             job_title=job["job_title"]

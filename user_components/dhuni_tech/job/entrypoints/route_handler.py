@@ -33,19 +33,23 @@ class JobView(HTTPMethodView):
         return response.json(jsonable_encoder(job))
         
     async def post(self, request, id_=None):
-        
-        try:
+        try:        
+            err =[]
             validated_data = abstract.AddJob(**request.json)
             job_command = command.AddJob(**validated_data.dict())
             uow = unit_of_work.JobSqlAlchemyUnitOfWork(
                 connection=request.app.ctx.db,
                 repository_class=repository.JobRepository,
             )
+            
+
             result = await messagebus.handle(message=job_command, uow=uow)
             
         except ValidationError as err:
             return response.json(json.loads(err.json()), status=400)
 
+        except exceptions.DUPLICATE_JOB_FOUND as err:
+                return response.json("Job already in database", status=400)
         if isinstance(result[0], UUID):
             job_result = await views.get_job(result[0], request.app.ctx.db)
             return response.json(
@@ -69,6 +73,8 @@ class JobView(HTTPMethodView):
                 )
             except ValidationError as err:
                 return response.json(json.loads(err.json()), status=400)
+            except exceptions.DUPLICATE_JOB_FOUND as err:
+                return response.json("Job already in database", status=400)
             if result:
                 job_result = await views.get_job(id_, request.app.ctx.db)
                 return response.json(
@@ -143,9 +149,8 @@ class JobSkillsView(HTTPMethodView):
             return response.json(json.loads(err.json()), status=400)
         except Exception as e:
                 return response.json("duplicate skill found", status=400)
-
         if isinstance(result[0], UUID):
-            job_result = await views.get_job_skills(result[0], request.app.ctx.db)
+            job_result = await views.get_job_skills_by_id(result[0], request.app.ctx.db)
             return response.json(
                 {
                     "job": jsonable_encoder(job_result),
@@ -174,7 +179,7 @@ class JobSkillsView(HTTPMethodView):
                 return response.json("duplicate skill found", status=400)
 
             if result:
-                job_result = await views.get_job_skills(id_, request.app.ctx.db)
+                job_result = await views.get_job_skills_by_id(id_, request.app.ctx.db)
                 return response.json(
                     {
                         "job": jsonable_encoder(job_result),

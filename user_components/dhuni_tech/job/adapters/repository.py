@@ -30,7 +30,7 @@ class JobRepository(SqlAlchemyRepository):
         job_query = job.insert()
         job_values = {
             "id": str(model.id_),
-            "job_title":model.job_title,
+            "job_title":model.job_title.title(),
         }
         await self.db.execute(query=job_query, values=job_values)
 
@@ -47,7 +47,7 @@ class JobRepository(SqlAlchemyRepository):
     async def update(self, model: model.Job):
         update_job = job.update().where(job.c.id == str(model.id_))
         job_values = {
-            "job_title":model.job_title,
+            "job_title":model.job_title.title(),
         }
         await self.db.execute(
             query=update_job,
@@ -72,7 +72,7 @@ class JobSkillsRepository(SqlAlchemyRepository):
         job_skills_values = {
             "id": str(model.id_),
             "job_id":model.job_id,
-            "skills_name":model.skills_name
+            "skills_name":model.skills_name.title()
         }
         await self.db.execute(query=job_skills_query, values=job_skills_values)
 

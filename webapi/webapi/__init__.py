@@ -3,7 +3,8 @@ from sanic import Sanic
 from webapi.bootstrap import init_database
 
 from dhuni_tech.job.entrypoints.routes import job, job_skills
-from dhuni_tech.candidate.entrypoints.routes import candidate, candidate_skills
+from dhuni_tech.skill_similarity.entrypoints.routes import similarity
+from dhuni_tech.candidate.entrypoints.routes import candidate, candidate_skills 
 
 app = Sanic("DhuniTech")
 
@@ -11,6 +12,7 @@ async def create_app(settings: None):
     app.blueprint(job)
     app.blueprint(job_skills)
     app.blueprint(candidate)
+    app.blueprint(similarity)
     app.blueprint(candidate_skills)
     db = init_database(settings)
     app.ctx.settings = settings

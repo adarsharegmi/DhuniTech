@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "6a9c2a5e-b44c-4045-b2cc-fd69d414824b",
+		"name": "candidate_skills",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20326941"
+	},
+	"item": [
+		{
+			"name": "create candidate skills",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"job_id\":\"8ee1a379-4b50-4b41-93fe-31a930d6cef8\", \"skills_name\":\"Node\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/job_skills/job_skills",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"job_skills",
+						"job_skills"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get candidate skills",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/job_skills/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"job_skills",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update candidate skills",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"skills_name\":\"Node\", \"candidate_id\":\"\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/candidate_skills/dcda912e-ab53-42ea-8a6f-f784e75ac6a1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"candidate_skills",
+						"dcda912e-ab53-42ea-8a6f-f784e75ac6a1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete candidate_skills",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/job_skills/25bb02a6-44c2-4ed1-a120-8c5490a058a6",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"job_skills",
+						"25bb02a6-44c2-4ed1-a120-8c5490a058a6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

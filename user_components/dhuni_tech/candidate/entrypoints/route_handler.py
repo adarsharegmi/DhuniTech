@@ -149,7 +149,7 @@ class CandidateSkillsView(HTTPMethodView):
             return response.json("duplicate skill found", status=400)
 
         if isinstance(result[0], UUID):
-            candidate_result = await views.get_candidate_skills(result[0], request.app.ctx.db)
+            candidate_result = await views.get_candidate_skills_by_id(result[0], request.app.ctx.db)
             return response.json(
                 {
                     "candidate": jsonable_encoder(candidate_result),
@@ -175,7 +175,7 @@ class CandidateSkillsView(HTTPMethodView):
             except exceptions.DUPLICATE_SKILL_FOUND as err:
                 return response.json(json.loads(err.json()), status=400)
             if result:
-                candidate_result = await views.get_candidate_skills(id_, request.app.ctx.db)
+                candidate_result = await views.get_candidate_skills_by_id(id_, request.app.ctx.db)
                 return response.json(
                     {
                         "candidate": jsonable_encoder(candidate_result),
