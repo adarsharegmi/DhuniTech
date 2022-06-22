@@ -1,1 +1,1 @@
-web : poetry run app
+web: poetry run app
