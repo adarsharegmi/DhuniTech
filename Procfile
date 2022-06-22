@@ -1,1 +1,1 @@
-web: gunicorn webapi.webapi.main:app
+web: gunicorn poetry run app
