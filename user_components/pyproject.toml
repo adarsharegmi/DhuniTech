@@ -7,7 +7,7 @@ authors = ["Addy <Addy@gmail.com>"]
 packages =[{include ="dhuni_tech"}]
 
 [tool.poetry.dependencies]
-python = "3.8"
+python = "3.10.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "5.2"
