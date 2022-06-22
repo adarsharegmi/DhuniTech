@@ -6,11 +6,11 @@ from nepAddy_core.lib.settings import AbstractSettings
 
 
 load_dotenv(find_dotenv())
-DB_USER = os.environ.get("DB_USER", "plnvkgnjzlfrib")
-DB_PASSWORD = os.environ.get("DB_PASSWORD", "0849a56bc27eeb2c9359825a513e93ab4f01716de56e1682212796a5ceb9132a")
+DB_USER = os.environ.get("DB_USER", "ncligagsmtvynw")
+DB_PASSWORD = os.environ.get("DB_PASSWORD", "64f263ce4b9c0ed3529197f0414e6c6cb055b94db51ef02c9f06546789929794")
 DB_PORT = os.environ.get("DB_PORT", "5432")
-DB_HOST = os.environ.get("HOST", "ec2-18-204-142-254.compute-1.amazonaws.com")
-DB_NAME = os.environ.get("DB_NAME", "d6s3ov1vs5cbt8")
+DB_HOST = os.environ.get("HOST", "ec2-54-165-90-230.compute-1.amazonaws.com")
+DB_NAME = os.environ.get("DB_NAME", "d7odjtd7b05gh8")
 
 
 class Settings(AbstractSettings):
