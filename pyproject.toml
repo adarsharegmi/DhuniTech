@@ -11,23 +11,23 @@ packages=[
 
 [tool.poetry.dependencies]
 python = "3.10.4"
-sanic = "^22.3.2"
-databases = "^0.6.0"
-pydantic = "^1.9.1"
-SQLAlchemy = "^1.4.37"
-fire = "^0.4.0"
-python-dotenv = "^0.20.0"
-alembic = "^1.8.0"
-Sanic-Cors = "^2.0.1"
-PyJWT = "^2.4.0"
-sanic-session = "^0.8.0"
-asyncpg = "^0.25.0"
-psycopg2 = "^2.9.3"
-SQLAlchemy-Utils = "^0.38.2"
-gunicorn = "^20.1.0"
+sanic = "22.3.2"
+databases = "0.6.0"
+pydantic = "1.9.1"
+SQLAlchemy = "1.4.37"
+fire = "0.4.0"
+python-dotenv = "0.20.0"
+alembic = "1.8.0"
+Sanic-Cors = "2.0.1"
+PyJWT = "2.4.0"
+sanic-session = "0.8.0"
+asyncpg = "0.25.0"
+psycopg2 = "2.9.3"
+SQLAlchemy-Utils = "0.38.2"
+gunicorn = "20.1.0"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+pytest = "5.2"
 nepAddy_core = {path="vendor/nepAddy_core-0.1.0-py3-none-any.whl"}
 user_components = {path="vendor/user_components-0.1.0-py3-none-any.whl"}
 
