@@ -16,6 +16,7 @@ async def get_job(id_: UUID, db: DbConnection):
     return job_result
 
 async def check_job_title(name: str, db: DbConnection):
+    name = name.title()
     job_query = sa.select(
         [
             job.c.id,
