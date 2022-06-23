@@ -67,8 +67,13 @@ async def add_candidate_skills(
         app = check_app()
         candidate_skills = await domain_handler.add_candidate_skills(cmd)
         res = await views.check_skills(cmd.candidate_id, cmd.skills_name, app.ctx.db)
+        
         if res:
             raise exceptions.DUPLICATE_SKILL_FOUND()
+
+        res2 = await views.get_candidate(cmd.candidate_id, app.ctx.db)
+        if res2:
+            raise exceptions.USER_DOES_NOT_EXIST()
 
         await uow.repository.add(candidate_skills)
     return candidate_skills.id_
@@ -94,6 +99,15 @@ async def update_candidate_skills(
             
         )
         candidate_skills = await domain_handler.update_candidate_skills(cmd=candidate_skills_command)
+        
+        res = await views.check_skills(cmd.candidate_id, cmd.skills_name, app.ctx.db) 
+        if res:
+            raise exceptions.DUPLICATE_SKILL_FOUND()
+
+        res2 = await views.get_candidate(cmd.candidate_id, app.ctx.db)
+        if res2:
+            raise exceptions.USER_DOES_NOT_EXIST()
+
         await uow.repository.update(candidate_skills)
 
 

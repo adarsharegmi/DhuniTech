@@ -68,6 +68,15 @@ async def add_job_skills(
     async with uow:
         app = check_app()
         job_skills = await domain_handler.add_job_skills(cmd)
+        res = await views.check_skills(cmd.job_id, cmd.skills_name, app.ctx.db)
+        
+        if res:
+            raise exceptions.DUPLICATE_SKILL_FOUND()
+
+        res2 = await views.get_job(cmd.job_id, app.ctx.db)
+        if res2:
+            raise exceptions.JOB_DOES_NOT_EXIST()
+
         await uow.repository.add(job_skills)
     return job_skills.id_
 
@@ -79,6 +88,15 @@ async def update_job_skills(
     async with uow:
         job_skills = await uow.repository.get(cmd.id_)
         app = check_app()
+        res = await views.check_skills(cmd.job_id, cmd.skills_name, app.ctx.db)
+        
+        if res:
+            raise exceptions.DUPLICATE_SKILL_FOUND()
+
+        res2 = await views.get_job(cmd.job_id, app.ctx.db)
+        if res2:
+            raise exceptions.JOB_DOES_NOT_EXIST()
+            
         job_skills = model.JobSkills(
             id_=job_skills["id"],
             skills_name=job_skills["skills_name"],
@@ -91,6 +109,7 @@ async def update_job_skills(
             
         )
         job_skills = await domain_handler.update_job_skills(cmd=job_skills_command)
+        
         await uow.repository.update(job_skills)
 
 

@@ -6,3 +6,6 @@ class DUPLICATE_SKILL_FOUND(Exception):
 
 class DUPLICATE_JOB_FOUND(Exception):
     pass
+
+class JOB_DOES_NOT_EXIST(Exception):
+    pass
