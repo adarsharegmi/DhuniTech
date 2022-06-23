@@ -1,4 +1,5 @@
 import json
+from sqlite3 import DataError
 from uuid import UUID
 from pydantic import ValidationError
 from sanic import response
@@ -151,6 +152,8 @@ class JobSkillsView(HTTPMethodView):
 
         except exceptions.JOB_DOES_NOT_EXIST as err:
             return response.json("Job doesnot exist", status=400)
+        except DataError as err:
+            return response.json("Invalid candidate", status=400)
         except Exception as e:
             return response.json(type(e).__name__, status=400)
         if isinstance(result[0], UUID):
@@ -176,14 +179,15 @@ class JobSkillsView(HTTPMethodView):
                 )
             except ValidationError as err:
                 return response.json(json.loads(err.json()), status=400)
-
             except exceptions.DUPLICATE_SKILL_FOUND as err:
                 return response.json(json.loads(err.json()), status=400)
+
             except exceptions.JOB_DOES_NOT_EXIST as err:
                 return response.json("Job doesnot exist", status=400)
-
+            except DataError as err:
+                return response.json("Invalid candidate", status=400)
             except Exception as e:
-                return response.json("duplicate skill found", status=400)
+                return response.json(type(e).__name__, status=400)
 
             if result:
                 job_result = await views.get_job_skills_by_id(id_, request.app.ctx.db)
