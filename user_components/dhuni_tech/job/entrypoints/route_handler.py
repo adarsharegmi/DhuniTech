@@ -5,6 +5,7 @@ from sanic import response
 from sanic.views import HTTPMethodView
 from nepAddy_core.lib import err_msg
 from nepAddy_core.lib.json_encoder import jsonable_encoder
+from user_components.dhuni_tech.job.domain.exceptions import JOB_DOES_NOT_EXIST
 from webapi.messagebus import messagebus
 
 from dhuni_tech.job.views import views
@@ -147,6 +148,9 @@ class JobSkillsView(HTTPMethodView):
             return response.json(json.loads(err.json()), status=400)
         except exceptions.DUPLICATE_SKILL_FOUND as err:
             return response.json(json.loads(err.json()), status=400)
+
+        except exceptions.JOB_DOES_NOT_EXIST as err:
+            return response.json("Job doesnot exist", status=400)
         except Exception as e:
                 return response.json("duplicate skill found", status=400)
         if isinstance(result[0], UUID):
@@ -175,6 +179,9 @@ class JobSkillsView(HTTPMethodView):
 
             except exceptions.DUPLICATE_SKILL_FOUND as err:
                 return response.json(json.loads(err.json()), status=400)
+            except exceptions.JOB_DOES_NOT_EXIST as err:
+                return response.json("Job doesnot exist", status=400)
+
             except Exception as e:
                 return response.json("duplicate skill found", status=400)
 
