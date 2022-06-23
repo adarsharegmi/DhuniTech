@@ -99,6 +99,6 @@ async def check_skills(job_id: str, skills_name: str, db: DbConnection):
             job_skills.c.skills_name,
             job_skills.c.job_id
         ]
-    ).where(sa.and_(str(job_id)==job_skills.c.candidate_id , skills_name==job_skills.c.skills_name))
+    ).where(sa.and_(str(job_id)==job_skills.c.job_id , skills_name==job_skills.c.skills_name))
     job_skills_result = await db.fetch_one(query=job_skills_query)
     return job_skills_result
