@@ -13,7 +13,7 @@ class AddCandidate(BaseModel):
 class UpdateCandidate(BaseModel):
     id_: Optional[str]
     first_name: Optional[str]
-    last__name: Optional[str]
+    last_name: Optional[str]
     status: Optional[str]
 
 class CandidateStatus(str, Enum):
