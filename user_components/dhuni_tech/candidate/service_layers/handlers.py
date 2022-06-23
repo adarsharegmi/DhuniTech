@@ -72,7 +72,7 @@ async def add_candidate_skills(
             raise exceptions.DUPLICATE_SKILL_FOUND()
 
         res2 = await views.get_candidate(cmd.candidate_id, app.ctx.db)
-        if res2:
+        if not res2:
             raise exceptions.USER_DOES_NOT_EXIST()
 
         await uow.repository.add(candidate_skills)
@@ -105,7 +105,7 @@ async def update_candidate_skills(
             raise exceptions.DUPLICATE_SKILL_FOUND()
 
         res2 = await views.get_candidate(cmd.candidate_id, app.ctx.db)
-        if res2:
+        if not res2:
             raise exceptions.USER_DOES_NOT_EXIST()
 
         await uow.repository.update(candidate_skills)

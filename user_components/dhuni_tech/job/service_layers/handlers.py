@@ -74,7 +74,7 @@ async def add_job_skills(
             raise exceptions.DUPLICATE_SKILL_FOUND()
 
         res2 = await views.get_job(cmd.job_id, app.ctx.db)
-        if res2:
+        if not res2:
             raise exceptions.JOB_DOES_NOT_EXIST()
 
         await uow.repository.add(job_skills)
@@ -94,7 +94,7 @@ async def update_job_skills(
             raise exceptions.DUPLICATE_SKILL_FOUND()
 
         res2 = await views.get_job(cmd.job_id, app.ctx.db)
-        if res2:
+        if not res2:
             raise exceptions.JOB_DOES_NOT_EXIST()
 
         job_skills = model.JobSkills(
