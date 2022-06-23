@@ -91,12 +91,12 @@ async def update_job_skills(
         res = await views.check_skills(cmd.job_id, cmd.skills_name, app.ctx.db)
         
         if res:
-            raise exceptions.DUPLICATE_SKILL_FOUND()
+            raise exceptions.DUPLICATE_SKILL_FOUND("duplicate skill found")
 
         res2 = await views.get_job(cmd.job_id, app.ctx.db)
         if res2:
             raise exceptions.JOB_DOES_NOT_EXIST()
-            
+
         job_skills = model.JobSkills(
             id_=job_skills["id"],
             skills_name=job_skills["skills_name"],

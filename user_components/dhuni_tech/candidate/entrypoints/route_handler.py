@@ -148,7 +148,7 @@ class CandidateSkillsView(HTTPMethodView):
         except exceptions.USER_DOES_NOT_EXIST as err:
             return response.json("User doesnot exist", status=400)
         except Exception as e:
-            return response.json("duplicate skill found", status=400)
+            return response.json(type(e).__name__, status=400)
 
         if isinstance(result[0], UUID):
             candidate_result = await views.get_candidate_skills_by_id(result[0], request.app.ctx.db)

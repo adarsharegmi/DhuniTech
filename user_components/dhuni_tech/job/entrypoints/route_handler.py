@@ -152,7 +152,7 @@ class JobSkillsView(HTTPMethodView):
         except exceptions.JOB_DOES_NOT_EXIST as err:
             return response.json("Job doesnot exist", status=400)
         except Exception as e:
-                return response.json("duplicate skill found", status=400)
+            return response.json(type(e).__name__, status=400)
         if isinstance(result[0], UUID):
             job_result = await views.get_job_skills_by_id(result[0], request.app.ctx.db)
             return response.json(
